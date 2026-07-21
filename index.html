@@ -1,0 +1,28 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Skye Cove - Continuity Inspector</title>
+  <style>
+    :root{--ink:#e8eef6;--muted:#9aa9bb;--bg:#071019;--panel:#101d29;--line:#24384a;--cyan:#6de4da;--gold:#e8c36a;--red:#ff8e8e;--green:#93e6af}*{box-sizing:border-box}body{margin:0;background:radial-gradient(circle at 80% 0,#163047 0,transparent 35%),var(--bg);color:var(--ink);font:15px/1.55 ui-sans-serif,system-ui,-apple-system,Segoe UI,sans-serif}.wrap{max-width:1120px;margin:auto;padding:42px 24px 70px}.eyebrow{color:var(--cyan);letter-spacing:.16em;text-transform:uppercase;font-size:12px;font-weight:800}h1{font-size:clamp(34px,6vw,68px);line-height:1;margin:.2em 0}.lead{max-width:760px;color:var(--muted);font-size:18px}.actions{display:flex;gap:12px;margin:28px 0;flex-wrap:wrap}button{background:var(--cyan);border:0;color:#05201e;padding:12px 18px;border-radius:9px;font-weight:800;cursor:pointer}button.secondary{background:transparent;color:var(--ink);border:1px solid var(--line)}.grid{display:grid;grid-template-columns:1.35fr .65fr;gap:18px}.panel{background:color-mix(in srgb,var(--panel) 92%,transparent);border:1px solid var(--line);border-radius:14px;padding:20px}.panel h2{margin:0 0 14px;font-size:17px}.source{display:grid;grid-template-columns:1fr auto;gap:8px;padding:13px 0;border-top:1px solid var(--line)}.source:first-of-type{border-top:0}.meta{color:var(--muted);font-size:13px}.badge{align-self:start;border:1px solid var(--line);border-radius:99px;padding:3px 8px;font-size:11px}.current{color:var(--green)}.superseded{color:var(--gold)}.unresolved{color:var(--red)}.restricted{color:var(--red)}.receipt{white-space:pre-wrap;background:#08131d;border-radius:10px;padding:14px;color:#c8d4df;min-height:260px}.metric{display:flex;justify-content:space-between;border-top:1px solid var(--line);padding:10px 0}.metric:first-of-type{border:0}.plain{color:var(--muted);font-size:13px;margin-top:18px}@media(max-width:760px){.grid{grid-template-columns:1fr}.wrap{padding:28px 16px}}
+  </style>
+</head>
+<body><main class="wrap">
+  <div class="eyebrow">MemoryOS Lite / Synthetic Demonstration</div>
+  <h1>Skye Cove</h1>
+  <p class="lead">A deterministic inspection layer for governed continuity: it shows how a clean session can recover the minimum current state from a user-controlled vault without reloading everything.</p>
+  <div class="actions"><button id="run">Run continuity inspection</button><button class="secondary" id="reset">Reset</button></div>
+  <div class="grid"><section class="panel"><h2>Source manifest</h2><div id="sources"></div></section><aside class="panel"><h2>Continuity receipt</h2><div id="receipt" class="receipt">Ready. No sources inspected yet.</div></aside></div>
+  <p class="plain">Integrity note: this page is a local, rule-based companion—not an AI model and not a Google Drive connector. The live clean-chat test demonstrates assisted Drive retrieval; this inspector makes the expected governance decisions visible and reproducible.</p>
+</main>
+<script>
+const vault={vault:{name:'Chaz Meridian Context Vault',synthetic:true},sources:[
+{id:'BOOT-001',title:'Governing Baseline',authority:1,privacy:'internal',status:'current',retrieved:true},
+{id:'STATE-004',title:'Current Build State',authority:2,privacy:'internal',status:'current',retrieved:true},
+{id:'PLAN-002',title:'Old Launch Plan',authority:3,privacy:'internal',status:'superseded',retrieved:false,reason:'Superseded by STATE-004'},
+{id:'NOTE-007',title:'Unverified Meeting Note',authority:4,privacy:'internal',status:'unresolved',retrieved:true},
+{id:'PRIVATE-003',title:'Restricted Personal Context',authority:2,privacy:'restricted',status:'current',retrieved:false,reason:'Blocked by privacy policy'},
+{id:'ARCHIVE-009',title:'Unrelated Project Archive',authority:5,privacy:'internal',status:'historical',retrieved:false,reason:'Not relevant to the active task'}]};
+const el=id=>document.getElementById(id);function render(active=false){el('sources').innerHTML=vault.sources.map(s=>`<div class="source"><div><strong>${s.id} - ${s.title}</strong><div class="meta">Authority ${s.authority} / ${s.privacy}${active&&s.reason?' / '+s.reason:''}</div></div><span class="badge ${s.privacy==='restricted'?'restricted':s.status}">${active?(s.retrieved?'USED':'SKIPPED'):s.status.toUpperCase()}</span></div>`).join('')}
+el('run').onclick=()=>{render(true);el('receipt').textContent=`CONTINUITY RESTORED: PASS\n\nGoverning source\nBOOT-001 - Governing Baseline\n\nCurrent state\nProduct: MemoryOS Lite\nNext action: Record clean-session test\n\nGovernance decisions\n- PLAN-002 excluded as superseded\n- PRIVATE-003 blocked as restricted\n- NOTE-007 retained as unresolved\n- ARCHIVE-009 skipped as irrelevant\n\nSources accessed: 3\nSources skipped: 3\nFull reload necessary: No\nPrivate content exposed: No\nProvenance preserved: Yes`};el('reset').onclick=()=>{render();el('receipt').textContent='Ready. No sources inspected yet.'};render();
+</script></body></html>

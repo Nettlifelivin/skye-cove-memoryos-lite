@@ -1,0 +1,12 @@
+{
+  "vault": {"name": "Chaz Meridian Context Vault", "version": "1.0", "synthetic": true, "lastUpdated": "2026-07-21"},
+  "sources": [
+    {"id":"BOOT-001","title":"Governing Baseline","authority":1,"privacy":"internal","status":"current","modified":"2026-07-21","retrieved":true,"claims":["Chaz Meridian is a fictional AI archivist.","The active product is MemoryOS Lite."]},
+    {"id":"STATE-004","title":"Current Build State","authority":2,"privacy":"internal","status":"current","modified":"2026-07-21","retrieved":true,"claims":["The next action is to record the clean-session continuity test."]},
+    {"id":"PLAN-002","title":"Old Launch Plan","authority":3,"privacy":"internal","status":"superseded","modified":"2026-07-18","retrieved":false,"supersededBy":"STATE-004","claims":["The next action is to build a full multi-user application."]},
+    {"id":"NOTE-007","title":"Unverified Meeting Note","authority":4,"privacy":"internal","status":"unresolved","modified":"2026-07-20","retrieved":true,"claims":["The demo review may be Thursday or Friday."]},
+    {"id":"PRIVATE-003","title":"Restricted Personal Context","authority":2,"privacy":"restricted","status":"current","modified":"2026-07-20","retrieved":false,"reason":"Blocked by privacy policy","claims":["Sensitive fictional detail intentionally withheld."]},
+    {"id":"ARCHIVE-009","title":"Unrelated Project Archive","authority":5,"privacy":"internal","status":"historical","modified":"2026-06-01","retrieved":false,"reason":"Not relevant to the active task","claims":["Historical material retained for provenance."]}
+  ],
+  "task": "Restore the minimum governed state needed to continue the Build Week demonstration."
+}
