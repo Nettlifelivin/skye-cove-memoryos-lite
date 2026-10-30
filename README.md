@@ -1,50 +1,26 @@
-# Skye Cove - MemoryOS Lite
+# SkyeAtlas — Nebius × NVIDIA hackathon
 
-**The conversation is temporary. The user's context is portable.**
+Current application source is preserved in `SkyeAtlas_Source.py`, a self-extracting source distribution containing the complete unchanged Base44 export. This format avoids browser file-upload limitations. Clone/download this repository, inspect the short extractor, then run `python3 SkyeAtlas_Source.py` in an empty working directory. It verifies SHA-256 and extracts all 174 exported files into `skyeatlas/`, including frontend routes/components, server functions, entity schemas, package manifest and lockfile. Python 3.9+ is required for extraction. The extractor was tested: every extracted file matched the original export byte for byte.
 
-Skye Cove demonstrates a governed continuity workflow: a clean AI session retrieves the minimum current project state from a user-controlled context vault, honors authority and privacy rules, distinguishes current from superseded information, preserves unresolved conflicts, and reports exactly what it used and skipped.
+Original export SHA-256: `18995a3491f80f9c65f50584c450c830bbde22697a976a3d4a9924b054cfab2f`. Read the extracted README.md and HANDOFF.md for architecture. The exported documentation predates live inference; the verification status in this root README supersedes its stale statements about no configured key/no calls/unpublished status.
 
-## Run locally
+Setup: Node 20+, install the official Base44 CLI, then inside the extracted folder run `npm ci`, `base44 login`, `base44 link`, `base44 dev`. Set NEBIUS_API_KEY in the linked app dashboard Secrets. Run `npm run build` and use `base44 deploy` to publish. This export requires the Base44 runtime; it is not a standalone backend.
 
-No install, account, API key, or build step is required.
+Live app: https://skye-atlas-flow.base44.app (sign-in required). Sign in, load the fictional DEMO scenario, inspect Resume, Approvals, History, and Settings / AI. Each account has its own workspace. Set your own server-side NEBIUS_API_KEY to test inference; no key is included.
 
-1. Download this repository.
-2. Open `index.html` in Chrome, Edge, Firefox, or Safari.
-3. Select **Run continuity inspection**.
-4. Verify the receipt says `CONTINUITY RESTORED: PASS`.
+SkyeAtlas adds persistent checkpoints, source authority/version/conflict records, traffic-light autonomy, payload/version-bound approvals and before/after action receipts. NVIDIA Nemotron runs through Nebius Token Factory's OpenAI-compatible API, in src/lib/nebius.server.js. Tested model IDs: nvidia/NVIDIA-Nemotron-3-Nano-30B-A3B and nvidia/Nemotron-3_5-Lightning. No fine-tuning or dedicated GPUs. Serverless catalog and chat access avoided provisioning infrastructure.
 
-If double-clicking does not open the page, right-click `index.html`, choose **Open with**, and select a browser.
+Verified Oct 30: fictional task approval changed Blocked to Doing and produced a receipt; basic live Nemotron Lightning JSON response parsed successfully. Two complex model prompts failed the output contract. No successful evidence-grounded reasoning benchmark is claimed.
 
-## What is demonstrated
+Known limits: Base44 runtime/auth/storage dependency; non-atomic action/receipt writes; concurrency and full import roundtrip unverified; dependency security findings remain unresolved. This is a hackathon prototype, not production-ready. Receipts are not immutable.
 
-- A synthetic Chaz Meridian context vault, never Michael's private records.
-- Source authority ranking and current-state selection.
-- Superseded, restricted, unresolved, and irrelevant-source handling.
-- Targeted loading and an inspectable continuity receipt.
-- A compact handshake for the live connected-Drive test.
+Historical July MemoryOS Lite foundation remains in the root files and git history. It is a separate deterministic proof, not the current app. The current React/server/entity implementation was developed afterward for this hackathon; preserve that distinction.
 
-## What works now vs. what is represented
+License: MIT for this project's original code; third-party packages retain their own licenses.
 
-The local inspector is deterministic and fully runnable. It transparently visualizes expected governance decisions from the included synthetic dataset. The separate live ChatGPT demonstration uses a connected Google Drive and the handshake in `HANDSHAKE.md` to show assisted retrieval from a clean conversation.
 
-This prototype does **not** claim to be an AI model, a Drive connector, automatic semantic retrieval, automatic hashing, or a production security boundary. Google Drive retrieval is a platform capability. The submission's original contribution is the portable vault structure, governance protocol, targeted handshake, provenance rules, and continuity receipt.
+Demo video: https://youtu.be/O9Zsdyz4Dkw (110-second captioned walkthrough of actual authenticated screenshots, fictional records).
 
-## Origin and provenance
+Gallery-only late submission: organizer granted delivery until October 31, 2026, 10 AM PT. Not eligible for judging or prizes. Source publication was completed after the competitive cutoff under this gallery-only continuation. No claim of on-time competitive submission.
 
-This minimum build is refined from `Skye Cove Build workflow origin- RAW CHAT`, an origin/rationale conversation. The source proposed a broader system including persistent manifests, hashes, delta loading, usage preflight, and usage ledgers. This submission deliberately narrows that vision to the smallest honest proof that can run locally and be demonstrated in a clean chat.
-
-## Repository files
-
-- `index.html`: local Continuity Inspector.
-- `vault.json`: human-readable synthetic test data.
-- `HANDSHAKE.md`: live clean-session command and pass criteria.
-- `DEMO_SCRIPT.md`: short recording plan.
-- `SUBMISSION_COPY.md`: copy-ready project description.
-
-## Built with Codex
-
-Codex was used to inspect the raw workflow source, reduce scope, generate the complete prototype and documentation, and verify that the deliverable is internally consistent. No private MemoryOS records were used in the prototype.
-
-## Future work
-
-Portable local/Drive vault templates, content hashes and true delta comparison, automated provenance capture, user-selectable Lite/task/full refresh depth, a context-usage ledger, and platform-independent adapters.
+Clean-workspace setup/import remains unverified; commands above are the exported project documentation, not a claim of independently reproduced deployment. Original July README is preserved in git history at commit 176d3cee6db881c3ae7b3bea286fe7b3d3951470.
